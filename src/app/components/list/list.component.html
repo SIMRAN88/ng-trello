@@ -1,4 +1,4 @@
-<div class="list" (dragover)="allowDrop($event)" (drop)="drop($event)">
+<div class="list" id="{{list.title}}" (dragover)="allowDrop($event)" (drop)="drop($event)">
     <div class="list-header">
         <p class="list__title"><strong>{{list && list.title}}</strong></p>
         <button class="action-btn" (click)="deleteListItem(list.title)">x</button>

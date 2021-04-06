@@ -6,7 +6,7 @@
         <input type="text" [(ngModel)]="listTitle" class="form-control" placeholder="Add List Title Here" required>
     </div>
 <div *ngIf="modalConfig.type==='card'">
-    <input type="text" [(ngModel)]="cardTitle" class="form-control" placeholder="Add Card Title Here" required>
+    <input type="text" [(ngModel)]="cardTitle" class="form-control card-title" placeholder="Add Card Title Here" required>
     <input type="textarea" [(ngModel)]="cardDesc" class="form-control" placeholder="Add Card Desc Here" required>
 </div>
     <div class="modal-footer">

@@ -1,15 +1,16 @@
-.button-wrapper{
-    display: flex;
-    justify-content: flex-end;
-    .add-btn {
-        border: none; /* Remove borders */
-        color: white; /* Add a text color */
-        padding: 14px 28px; /* Add some padding */
-        cursor: pointer; /* Add a pointer cursor on mouse-over */
-        background-color: #3D768F;
-        margin: 12px;
-        border-radius: 7px;
-      }
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  .add-btn {
+    border: none;
+    color: white;
+    padding:10px 24px !important;
+    cursor: pointer;
+    background-color: #3d768f;
+    margin: 12px;
+    border-radius: 7px;
+  }
 }
-
-
+.list-wrapper {
+  display: inline-flex;
+}

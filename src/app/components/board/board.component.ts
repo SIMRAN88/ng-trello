@@ -14,6 +14,13 @@ getListAdded$;
   constructor(private ngbModalService:NgbModal,private dataShareService:DataShareService) { }
 
   ngOnInit(): void {
+    const listArray = sessionStorage.getItem("listArray");
+    if(listArray){
+      this.listArray = JSON.parse(listArray);
+      this.dataShareService.setIsListAdded(true);
+      this.dataShareService.setIsCardAdded(true);
+      this.dataShareService.setListArray(this.listArray);
+    }
     this.getList();
   }
   getList(){
@@ -41,7 +48,7 @@ getListAdded$;
 
   appendList(that){
     that.listArray = that.dataShareService.listArray;
-    console.log(that.listArray);
+    that.dataShareService.setListArray(that.listArray);
   }
   }
 

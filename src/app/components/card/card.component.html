@@ -1,11 +1,15 @@
-<div *ngFor="let card of cardStore;let i=index" class="card" draggable="true" id="{{listTitle}}{{i}}"(dragstart)="dragStart($event)">
+<div *ngFor="let card of cardStore;let i=index" class="card" draggable="true" id="{{listTitle}}-{{i}}-{{card.title}}-{{card.desc}}"
+    (dragstart)="dragStart($event)">
     <div class="container">
+        <div class="btn-wrapper"> <button (click)="deleteCard(card, listTitle)" class="dlt-btn">
+                <p>-</p>
+            </button>
+        </div>
         <h4>
             {{card.title}}
         </h4>
         <p>
             {{card.desc}}
         </p>
-      </div>
+    </div>
 </div>
-

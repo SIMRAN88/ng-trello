@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +9,7 @@ export class DataShareService {
   listArray = [];
   cardTitle = "";
   cardDesc = "";
-  isCardAdded = new Subject<boolean>();
+  isCardAdded = new BehaviorSubject<boolean>(false);
   isListAdded = new Subject<boolean>();
   constructor() {}
 
@@ -18,22 +18,26 @@ export class DataShareService {
     newListObj["title"] = title;
     this.listArray.push(newListObj);
   }
+  setListArray(listArray) {
+    this.listArray = listArray;
+    sessionStorage.setItem("listArray", JSON.stringify(this.listArray));
+  }
   setCardTitle(title) {
     this.cardTitle = title;
   }
   setCardDesc(desc) {
     this.cardDesc = desc;
   }
-  setIsCardAdded(bool){
+  setIsCardAdded(bool) {
     this.isCardAdded.next(bool);
   }
-  getIsCardAdded():Observable<any>{
+  getIsCardAdded(): Observable<any> {
     return this.isCardAdded.asObservable();
   }
-  setIsListAdded(bool){
+  setIsListAdded(bool) {
     this.isListAdded.next(bool);
   }
-  getIsListAdded():Observable<any>{
+  getIsListAdded(): Observable<any> {
     return this.isListAdded.asObservable();
   }
 }

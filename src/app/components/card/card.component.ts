@@ -34,4 +34,18 @@ cardStore;
    dragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
   }
+  deleteCard(card, listTitle){
+    for (const i in this.listArray) {
+      if (this.listArray[i].title === listTitle) {
+         for(const t in this.listArray[i].card){
+          if(this.listArray[i].card[t].title === card.title){
+            this.listArray[i].card.splice(t,1);
+          }
+         }
+      }
+    }
+    this.dataShareService.setListArray(this.listArray);
+    this.dataShareService.setIsListAdded(true);
+    this.dataShareService.setIsCardAdded(true);
+  }
 }

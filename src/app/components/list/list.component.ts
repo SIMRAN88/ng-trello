@@ -11,8 +11,8 @@ import { ModalComponent } from "../modal/modal.component";
 export class ListComponent implements OnInit {
   @Input() list;
   listTitle = "";
-  cardTitle="";
-  cardDesc="";
+  cardTitle = "";
+  cardDesc = "";
   listArray;
   getListAdded$;
   cardAddedObs$;
@@ -22,8 +22,7 @@ export class ListComponent implements OnInit {
     private ngbModalService: NgbModal
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   addCard(listTitle) {
     this.listTitle = listTitle;
     const data = {
@@ -45,43 +44,49 @@ export class ListComponent implements OnInit {
     that.listArray = that.dataShareService.listArray;
     that.cardTitle = that.dataShareService.cardTitle;
     that.cardDesc = that.dataShareService.cardDesc;
-    const cardObj={}
-    cardObj['title']=that.cardTitle;
-    cardObj['desc']=that.cardDesc;
-    const cardStore=[];
+    const cardObj = {};
+    cardObj["title"] = that.cardTitle;
+    cardObj["desc"] = that.cardDesc;
+    const cardStore = [];
     cardStore.push(cardObj);
     for (const i in that.listArray) {
       if (that.listArray[i].title === that.listTitle) {
-        if(that.listArray[i].card){
-          that.listArray[i].card.push(cardObj)
-        }else{
+        if (that.listArray[i].card) {
+          that.listArray[i].card.push(cardObj);
+        } else {
           that.listArray[i].card = cardStore;
         }
       }
     }
-    that.dataShareService.listArray = that.listArray;
+    that.dataShareService.setListArray(that.listArray);
     that.dataShareService.setIsCardAdded(true);
   }
-  deleteListItem(title){
+  deleteListItem(title) {
     this.listArray = this.dataShareService.listArray;
     for (const i in this.listArray) {
       if (this.listArray[i].title === title) {
-        this.listArray.splice(i,1);
+        this.listArray.splice(i, 1);
       }
     }
-    this.dataShareService.listArray = this.listArray;
+    this.dataShareService.setListArray(this.listArray);
     this.dataShareService.setIsListAdded(true);
   }
   allowDrop($event) {
     $event.preventDefault();
   }
   drop($event) {
+    this.listArray = this.dataShareService.listArray;
     $event.preventDefault();
     const data = $event.dataTransfer.getData("text");
+    const listFromTitle = data.split("-")[0];
+    const cardId = Number(data.split("-")[1]);
+    const cardObj = {title :data.split("-")[2],desc:data.split("-")[3]}
     let target = $event.target;
+    let targetId = target.id;
     const targetClassName = target.className;
     while (target.className !== "list") {
       target = target.parentNode;
+      targetId = target.parentNode.firstElementChild.id;
     }
     target = target.querySelector(".cards");
     if (targetClassName === "card") {
@@ -96,7 +101,19 @@ export class ListComponent implements OnInit {
         target.appendChild(document.getElementById(data));
       }
     } else {
-      target.appendChild(document.getElementById(data));
+      for (const i in this.listArray) {
+        if(this.listArray[i].title=== listFromTitle){
+          this.listArray[i].card.splice(cardId, 1);
+        }
+        if(this.listArray[i].title === targetId){
+          this.listArray[i].card.unshift(cardObj);
+        }
+       
+      }
+      this.dataShareService.setListArray(this.listArray);
+      this.dataShareService.setIsListAdded(true);
+      this.dataShareService.setIsCardAdded(true);
+      target.insertBefore(document.getElementById(data), target.children[0]);
     }
   }
 }
