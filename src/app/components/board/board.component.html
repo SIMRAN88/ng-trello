@@ -1,0 +1,8 @@
+<div class="component-wrapper">
+    <div class="button-wrapper">
+        <button (click)="addList()" class="add-btn">Add List</button>
+    </div>
+    <div class="list-wrpper">
+        <app-list *ngFor="let list of listArray" [list]="list"></app-list>
+    </div>
+</div>

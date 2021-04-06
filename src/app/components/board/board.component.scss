@@ -1,0 +1,15 @@
+.button-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    .add-btn {
+        border: none; /* Remove borders */
+        color: white; /* Add a text color */
+        padding: 14px 28px; /* Add some padding */
+        cursor: pointer; /* Add a pointer cursor on mouse-over */
+        background-color: #3D768F;
+        margin: 12px;
+        border-radius: 7px;
+      }
+}
+
+

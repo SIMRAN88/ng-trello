@@ -1,0 +1,20 @@
+<div class="modal-body">
+    <p class="modal-description" id="modalbody">
+        {{modalConfig.titleText}}
+    </p>
+    <div *ngIf="modalConfig.type==='list'">
+        <input type="text" [(ngModel)]="listTitle" class="form-control" placeholder="Add List Title Here" required>
+    </div>
+<div *ngIf="modalConfig.type==='card'">
+    <input type="text" [(ngModel)]="cardTitle" class="form-control" placeholder="Add Card Title Here" required>
+    <input type="textarea" [(ngModel)]="cardDesc" class="form-control" placeholder="Add Card Desc Here" required>
+</div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="secondaryBtnAction();activeModal.close('Cancel click')">
+            {{modalConfig.secondaryButtonName}}
+        </button>
+        <button class="btn btn-primary" [disabled]="checkDisabled()" (click)="primaryBtnAction();activeModal.close('Ok click')">
+            {{ modalConfig.primaryButtonName }}
+        </button>
+    </div>
+</div>

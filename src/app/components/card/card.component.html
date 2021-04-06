@@ -1,0 +1,11 @@
+<div *ngFor="let card of cardStore;let i=index" class="card" draggable="true" id="{{listTitle}}{{i}}"(dragstart)="dragStart($event)">
+    <div class="container">
+        <h4>
+            {{card.title}}
+        </h4>
+        <p>
+            {{card.desc}}
+        </p>
+      </div>
+</div>
+

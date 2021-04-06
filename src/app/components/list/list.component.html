@@ -1,0 +1,11 @@
+<div class="list" (dragover)="allowDrop($event)" (drop)="drop($event)">
+    <div class="list-header">
+        <p class="list__title"><strong>{{list && list.title}}</strong></p>
+        <button class="action-btn" (click)="deleteListItem(list.title)">x</button>
+    </div>
+
+    <div class="cards">
+        <app-card [listTitle]="list?list.title:''"></app-card>
+    </div>
+    <button class="action-btn add-btn" (click)="addCard(list.title)">+</button>
+</div>

@@ -1,0 +1,29 @@
+.list {
+  background: aliceblue;
+  width: 220px;
+  margin: 5px;
+  height: calc(100vh - 164px);
+  display: inline-block;
+  .list-header {
+    display: flex;
+    background: #A0B8CB;
+    padding: 12px;
+    border-bottom: 2px solid;
+    .list__title {
+      text-align: center;
+      width: 80%;
+    }
+  }
+  .action-btn {
+    border: none;
+    color: white;
+    height: 28px;
+    padding: 0px 12px;
+    cursor: pointer;
+    background-color: #3d768f;
+    border-radius: 7px;
+  }
+  .add-btn {
+    
+  }
+}
