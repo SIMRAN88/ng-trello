@@ -12,6 +12,8 @@ export class ModalComponent implements OnInit {
   listTitle = "";
   cardTitle = "";
   cardDesc = "";
+  listArray;
+  titleExists = false;
   constructor(
     public activeModal: NgbActiveModal,
     private dataShareService: DataShareService
@@ -20,7 +22,7 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {}
   checkDisabled() {
     if (this.modalConfig.type === "list") {
-      if (this.listTitle === "") {
+      if (this.listTitle === "" || this.titleExists) {
         return true;
       } else {
         return false;
@@ -30,6 +32,17 @@ export class ModalComponent implements OnInit {
         return true;
       } else {
         return false;
+      }
+    }
+  }
+  validateTitle() {
+    this.listArray = this.dataShareService.listArray;
+    for (const i in this.listArray) {
+      if (this.listArray[i].title === this.listTitle) {
+        this.titleExists = true;
+        return true;
+      } else {
+        this.titleExists = false;
       }
     }
   }

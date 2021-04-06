@@ -3,7 +3,8 @@
         {{modalConfig.titleText}}
     </p>
     <div *ngIf="modalConfig.type==='list'">
-        <input type="text" [(ngModel)]="listTitle" class="form-control" placeholder="Add List Title Here" required>
+        <input type="text" [(ngModel)]="listTitle" (ngModelChange)="validateTitle()"class="form-control" placeholder="Add List Title Here" required>
+  <p *ngIf="titleExists" class="error">A list exists with the same title.</p>  
     </div>
 <div *ngIf="modalConfig.type==='card'">
     <input type="text" [(ngModel)]="cardTitle" class="form-control card-title" placeholder="Add Card Title Here" required>
